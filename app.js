@@ -327,11 +327,11 @@ function renderHome(){
     + `<div class="hkick">OSAKA TRAVEL PLANNER</div><h1>大阪旅遊手冊 Demo</h1>`
     + `<div class="hdate">規劃版展示・Day 1–Day 5・大阪＋奈良</div>`
     + `<div class="hcount"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.5 15.5 13.5 11V4.8a1.5 1.5 0 0 0-3 0V11l-8 4.5v2.1l8-2.4v4.3l-2.2 1.7V22.7L12 21.8l3.7.9v-1.5L13.5 19.5v-4.3l8 2.4v-2.1Z"/></svg>去識別化公開 Demo</div></div>`;
-  h += `<div class="note-line" style="margin-bottom:12px"><span>🧪</span><span>這是去識別化的公開作品集 Demo，沿用私人版 Netlify／PWA 的手冊 UI；公開版預計以 GitHub Pages 展示。實際日期、航班、旅客名單、訂單編號、聯絡方式、兒童姓名與私人財務資料均已移除；行程與公告皆為規劃／模擬內容，非實際行程。</span></div>`;
-  h += `<button class="videocard" type="button" data-act="demo-video">`
+  h += `<div class="note-line" style="margin-bottom:12px"><span>🧪</span><span>這是去識別化的公開作品集 Demo，沿用私人版 Netlify／PWA 的手冊 UI；公開版預計以 GitHub Pages 展示。實際日期、航班、旅客名單、訂單編號、聯絡方式、兒童本名與私人財務資料均已移除；行前影片中的「兔寶」為公開版化名；行程與公告皆為規劃／模擬內容，非實際行程。</span></div>`;
+  h += `<a class="videocard" href="行前影片/index.html" target="_blank" rel="noopener">`
     + `<span class="vplay"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5-11-6.5Z"/></svg></span>`
-    + `<span class="vtext"><b>互動 Demo 導覽</b><i>公開版不含私人影片</i></span>`
-    + `<span class="varrow">›</span></button>`;
+    + `<span class="vtext"><b>行前互動影片</b><i>為長輩與小朋友設計的圖像導覽</i></span>`
+    + `<span class="varrow">›</span></a>`;
   h += `<div class="secrow"><span class="sectitle"><span class="livedot"></span>即時公告</span><span class="annmeta" style="margin:0;">更新：${esc(ANN_UPDATED)}</span></div>`;
   const pinned = ANNOUNCEMENTS.filter(a=>a.pin), rest = ANNOUNCEMENTS.filter(a=>!a.pin);
   [...pinned, ...rest].forEach(a=>{
@@ -387,7 +387,6 @@ document.body.addEventListener("click",e=>{
     syncRate(rateActive);
   }
   else if(act==="copy-ann"){ const a=ANNOUNCEMENTS[+el.dataset.i]; if(a) copyText(`📢 ${a.title}（${a.time}）\n${a.body}`); }
-  else if(act==="demo-video"){ toast("公開版未包含私人影片，這裡保留原始互動卡片的展示位置"); }
   else if(act==="go-tab"){ switchTab(el.dataset.tab); }
   else if(act==="copy-rate"){ if(rateJpy>0) copyText(buildRateMsg(rateJpy)); else toast("請先輸入金額"); }
   else if(act==="edit-rate"){ const re=$("#rateEdit"); re.classList.toggle("open"); $("#r-twd").value=rate.twd; $("#r-cny").value=rate.cny; }
