@@ -60,12 +60,14 @@
 ## Preview
 
 <p align="center">
-  <img src="docs/screenshots/home.png" alt="Home screen" width="31%">
-  <img src="docs/screenshots/itinerary.png" alt="Itinerary screen" width="31%">
-  <img src="docs/screenshots/info.png" alt="Information screen" width="31%">
+  <img src="docs/screenshots/home.jpg" alt="Home screen" width="30%">
+  <img src="docs/screenshots/itinerary.jpg" alt="Itinerary screen" width="30%">
+  <img src="docs/screenshots/attraction.jpg" alt="Attraction detail screen" width="30%">
 </p>
 <p align="center">
-  <img src="docs/screenshots/video.png" alt="Interactive pre-trip guide" width="31%">
+  <img src="docs/screenshots/info.jpg" alt="Information screen" width="30%">
+  <img src="docs/screenshots/video-opening.jpg" alt="Interactive pre-trip guide opening" width="30%">
+  <img src="docs/screenshots/video-finale.jpg" alt="Interactive pre-trip guide finale" width="30%">
 </p>
 
 ## Tech and structure
