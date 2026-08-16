@@ -1,12 +1,12 @@
 # 大阪旅遊手冊 Demo
 
-一個手機優先的五日旅遊規劃介面，將每日行程、景點、住宿、公開資訊、匯率工具與常用日文集中在單一靜態網站中。
+一個沿用原 Netlify 旅遊手冊 UI 的手機優先五日旅遊規劃介面，將每日行程、景點、住宿、公開資訊、匯率工具與常用日文集中在單一靜態網站中。
 
 ## Portfolio demo
 
-This is a de-identified portfolio demo of a travel-planning interface. It showcases mobile-first information architecture, collapsible operational cards, local-only demo inputs, and a static deployment-friendly structure.
+This is a de-identified portfolio demo derived from a private travel-handbook project. It keeps the original Netlify handbook UI while replacing private travel records with synthetic demo data.
 
-本 repo 只包含公開 Demo 網站與必要素材，不包含私人旅遊文件、訂單、財務資料、成員名單或私人聯絡方式。網站內的旅客、訂單、包車與導遊欄位均為 `***` 或模擬資料。
+本 repo 只包含公開 Demo 網站與必要素材，不包含私人旅遊文件、訂單、財務資料、成員名單或私人聯絡方式。網站內的旅客、訂單、包車與導遊欄位均為 `***` 或模擬資料；行程與公告是規劃版展示，不代表實際旅程。
 
 私人使用版本部署於 Netlify 並保留個人化功能；本公開 Demo 預計部署於 GitHub Pages。兩者的資料範圍與用途不同，公開版不會連結到私人版本或私人影片頁面。
 
@@ -14,11 +14,11 @@ This is a de-identified portfolio demo of a travel-planning interface. It showca
 
 - Day 1–Day 5 itinerary navigation
 - Destination cards with public map links
-- Collapsible flight, hotel, room and contact demo panels
+- Collapsible flight, hotel, room and contact demo panels based on the original layout
 - Local-only editable demo fields using browser `localStorage`
 - Fixed demo currency converter without live rates or financial records
 - Japanese phrase cards with browser speech synthesis
-- Responsive mobile-first layout with no backend or analytics
+- Responsive mobile-first layout with no backend, analytics or private media links
 
 ## Structure
 
@@ -27,7 +27,8 @@ index.html          page shell
 styles.css          visual system and responsive layout
 app.js              rendering and interaction logic
 demo-data.js        replaceable trip demo data
-assets/             icons and travel image assets
+assets/             icons and decorative artwork
+照片資源/            destination and hotel display assets
 CREDITS.md          known asset credits and usage notes
 LICENSE             MIT license for source code only
 ```
@@ -41,7 +42,7 @@ Because the site uses separate JavaScript files, preview it through a local stat
 - No real names, phone numbers, emails, booking references, passwords, room numbers, payment records or expense settlements are included.
 - No API keys, backend endpoints, analytics, cookies or network data submission are used by the Demo.
 - The Google Maps links are public navigation URLs. The `api=1` query parameter is not an API key.
-- Editable fields stay in the current browser only and can be cleared with the reset button.
+- Editable fields stay in the current browser only via `localStorage`; they are not submitted to a server.
 
 ## License
 

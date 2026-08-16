@@ -1,75 +1,305 @@
-window.DEMO_DATA = {
-  meta: {
-    title: "大阪旅遊手冊 Demo",
-    subtitle: "手機優先的五日旅遊規劃介面",
-    notice: "本頁為規劃版與作品集 Demo，不代表實際行程、訂單或即時資訊。出發前請以官方資料為準。"
+/* =================== DATA =================== */
+const MAPS = q => "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(q);
+
+const DAYS = [
+  {
+    n:1, date:"Day 1", wd:"Demo", theme:"抵達大阪・初相見", hotel:"Park Front Hotel", emoji:"✈️",
+    warn:null,
+    acts:[
+      {em:"✈️", t:"上午 深圳組 抵達 KIX（Demo）"},
+      {em:"✈️", t:"上午 台北組 抵達 KIX，T1 集合（Demo）"},
+      {em:"🚐", t:"傍晚 包車抵 Park Front，辦理入住（Demo）"},
+      {em:"🛍️", t:"傍晚 Universal CityWalk 散步"},
+      {em:"🎢", t:"晚上【備案】USJ 夜間票"},
+      {em:"🍽️", t:"晚上 飯店自助晚餐（Demo）"},
+    ],
+    timeline:[
+      {time:"上午", t:"深圳組 抵達 KIX（Demo）"},
+      {time:"上午", t:"台北組 抵達 KIX，T1 集合（Demo）"},
+      {time:"傍晚", t:"包車抵 Park Front Hotel，辦理入住（Demo）"},
+      {time:"傍晚", t:"Universal CityWalk 散步"},
+      {time:"晚上", t:"【備案】USJ 夜間票"},
+      {time:"晚上", t:"飯店自助晚餐（Demo）"},
+    ],
+    places:[
+      {
+        emoji:"🛍️", name:"Universal CityWalk 大阪", q:"Universal CityWalk Osaka",
+        photo:"照片資源/02_景點/D1_USJ/D1_CityWalk_主視覺.jpg",
+        intro:"飯店步行即達，從 JR 環球城站延伸至 USJ 入口的娛樂商業街，共 38 家餐廳＋商店。",
+        info:[["💴","免費入場"],["⏱️","1–2 小時"]],
+        notes:["營業至 22:00–23:00｜3F Lawson 24 小時"],
+        highlights:{title:"店家亮點", items:[
+          {t:"4F 章魚燒公園：6 家章魚燒名店齊聚"},
+          {t:"3F 551蓬莱：豬肉包外帶"},
+          {t:"4F Hard Rock Cafe：美式餐廳"},
+          {t:"3F スシロー壽司郎：迴轉壽司"},
+          {t:"3F LAWSON：便利商店，24 小時", star:true},
+          {t:"3F 松本清：藥妝店，10:00–22:00"},
+        ]},
+      },
+      {
+        emoji:"🎢", name:"USJ 夜間票【備案】", q:"Universal Studios Japan",
+        photo:"照片資源/02_景點/D1_USJ/D1_USJ_官方.jpeg",
+        intro:"日本環球影城夜間入場券，17:00 起可遊玩哈利波特魔法世界、Hello Kitty 大道、史努比主題區，適合親子旅客。",
+        info:[["💴","成人 ¥6,100｜兒童（4歲–小學生）¥3,800｜3歲以下免費"],["⏱️","3–4 小時"],["🎟️","自由參加"]],
+        notes:["⚠️ 需出發前網路購票，無法現場購票；兒童票價請以官方最新資訊為準"],
+        links:[["USJ 官網購票","https://store.usj.co.jp/ja/jp/c/ticket"],["Lawson Ticket","https://l-tike.com/leisure/usj/studio_pass/"]],
+      },
+    ],
   },
-  announcements: [
-    { label: "示範公告", title: "集合提醒（Demo）", body: "請於集合前確認交通、票券與天氣。這則內容只用來展示公告元件，不是實際通知。" },
-    { label: "旅遊提示", title: "行程可以留白", body: "把移動時間、休息點與備案放進規劃裡，旅遊手冊才會真的適合在手機上使用。" }
+  {
+    n:2, date:"Day 2", wd:"Demo", theme:"泡麵博物館・達摩・新世界", hotel:"Park Front Hotel", emoji:"🍜",
+    warn:null,
+    acts:[
+      {em:"🍜", t:"上午 日清泡麵博物館"},
+      {em:"🍣", t:"午間 十割蕎麥麵"},
+      {em:"🎎", t:"午後 勝尾寺"},
+      {em:"🗼", t:"下午 大阪新世界商圈"},
+      {em:"🍢", t:"晚間 燒鳥居酒屋"},
+    ],
+    timeline:[
+      {time:"上午", t:"日清泡麵博物館"},
+      {time:"午間", t:"十割蕎麥麵"},
+      {time:"午後", t:"勝尾寺"},
+      {time:"下午", t:"大阪新世界商圈"},
+      {time:"晚間", t:"燒鳥居酒屋"},
+    ],
+    places:[
+      {emoji:"🍜", name:"日清泡麵博物館", q:"日清食品 カップヌードルミュージアム 大阪池田",
+        photo:"照片資源/02_景點/D2_泡麵達摩/D2_泡麵博物館.jpg",
+        intro:"親子必玩體驗，自製專屬杯麵，從設計杯身到選料、封膜一手包辦，帶走獨一無二的泡麵。",
+        info:[["💴","入館免費｜My Cup Noodles Factory ¥500"],["⏱️","1.5–2 小時"]],
+        notes:["⚠️ 泡麵製作工作坊需提前預約，額滿為止"]},
+      {emoji:"🎎", name:"勝尾寺", q:"勝尾寺 箕面",
+        photo:"照片資源/02_景點/D2_泡麵達摩/D2_勝尾寺.png",
+        intro:"箕面山中的勝運寺廟，整座山布滿信眾奉納的五彩達摩，氛圍獨特神秘，求勝運必訪。",
+        info:[["💴","入場 ¥400"],["⏱️","約 1 小時"]],
+        notes:["山中地勢有起伏，嬰兒車需注意"]},
+      {emoji:"🗼", name:"大阪新世界 ＆ 通天閣", q:"通天閣 新世界 大阪",
+        photo:"照片資源/02_景點/D2_泡麵達摩/D2_通天閣新世界.png",
+        intro:"大阪昭和懷舊街道，串炸、射擊遊戲、比利肯神像，充滿庶民風情。ジャンジャン横丁是其中最有老大阪氣氛的小巷。",
+        info:[["💴","通天閣登塔 ¥1,000｜街道免費"],["⏱️","1–1.5 小時"]]},
+    ],
+  },
+  {
+    n:3, date:"Day 3", wd:"Demo", theme:"退宿轉移・奈良・展望台", hotel:"OMO7 星野集團", emoji:"🦌",
+    warn:"Park Front 須 12:00 前退房｜OMO7 15:00 起可入住",
+    acts:[
+      {em:"🍚", t:"中午 奈良釜飯（導遊安排）"},
+      {em:"🦌", t:"下午 奈良公園 → 冰室神社 → 東大寺"},
+      {em:"🌃", t:"傍晚 阿倍野 HARUKAS 展望台"},
+      {em:"🥩", t:"晚間 國產牛燒肉吃到飽"},
+      {em:"🏮", t:"晚間 OSAKA PIKAPIKA NIGHT"},
+    ],
+    timeline:[
+      {time:"中午", t:"奈良釜飯（導遊安排）"},
+      {time:"下午", t:"奈良東向商店街 → 奈良公園 → 冰室神社 → 東大寺"},
+      {time:"傍晚", t:"阿倍野 HARUKAS 展望台"},
+      {time:"晚間", t:"國產牛燒肉吃到飽"},
+      {time:"19:15", t:"OSAKA PIKAPIKA NIGHT"},
+    ],
+    places:[
+      {emoji:"🦌", name:"奈良公園", q:"奈良公園",
+        photo:"照片資源/02_景點/D3_奈良/D3_奈良公園.jpg",
+        intro:"奈良東向商店街沿路步行即達，可近距離餵食鹿群（鹿仙貝 ¥200），是親子必訪的自然景點。",
+        info:[["💴","免費｜鹿仙貝 ¥200"],["⏱️","約 1 小時"]],
+        notes:["建議穿舒適鞋，範圍廣大"]},
+      {emoji:"⛩️", name:"冰室神社", q:"氷室神社 奈良",
+        photo:"照片資源/02_景點/D3_奈良/D3_冰室神社.jpg",
+        intro:"奈良公園旁的製冰業守護神社，夏天境內設有茅輪（夏越祓）及冰旗裝飾，清涼感十足，拍照氛圍絕佳。",
+        info:[["💴","免費"],["⏱️","約 20 分鐘"]]},
+      {emoji:"🏯", name:"東大寺（世界遺產）", q:"東大寺 奈良",
+        photo:"照片資源/02_景點/D3_奈良/D3_東大寺.jpg",
+        intro:"世界最大木造建築，供奉奈良大佛（高 15m），為日本代表性世界遺產，震撼人心。",
+        info:[["💴","大人 ¥800｜小孩 ¥400"],["⏱️","約 45 分鐘"]]},
+      {emoji:"🌃", name:"阿倍野 HARUKAS 展望台", q:"あべのハルカス 大阪",
+        photo:"照片資源/02_景點/D3_文化/D3_HARUKAS.jpg",
+        intro:"日本最高摩天大樓（300m），58–60F 展望台 360 度環景，夜景絕美，可遠眺大阪灣。",
+        info:[["💴","成人 ¥2,000"],["⏱️","約 1 小時"]],
+        notes:["建議傍晚至夜間前往，可同時看夕陽和夜景"]},
+      {emoji:"🏮", name:"OSAKA PIKAPIKA NIGHT", q:"OMO7 大阪 by 星野集團",
+        photo:"照片資源/02_景點/D3_文化/D3_OMO7夜景.png",
+        intro:"飯店內橫丁夜市，大阪美食＋現場娛樂表演。主秀「KOTEKOTE Show Time」20:30–20:45，附贈 3 張票（2 食物＋1 遊戲），加購 ¥400／張。",
+        info:[["💴","免費入場"],["🏨","飯店活動自由參加"],["⏱️","19:15–22:00（約 2.5–3 小時）"]],
+        notes:["2F OMO Base 集合｜不需預約"]},
+    ],
+  },
+  {
+    n:4, date:"Day 4", wd:"Demo", theme:"親子同遊・海遊館・心齋橋・松葉蟹", hotel:"OMO7 星野集團", emoji:"🎂",
+    warn:"🎂 親子旅遊主題日（Demo）",
+    acts:[
+      {em:"🐋", t:"上午 大阪海遊館"},
+      {em:"🍱", t:"午間 日式懷石料理"},
+      {em:"🛍️", t:"下午 心齋橋商圈"},
+      {em:"⛩️", t:"下午 難波八阪神社"},
+      {em:"🦀", t:"晚間 松葉蟹大餐"},
+      {em:"🎂", t:"晚間 慶生"},
+      {em:"🏮", t:"晚間 OSAKA PIKAPIKA NIGHT"},
+    ],
+    timeline:[
+      {time:"上午", t:"大阪海遊館"},
+      {time:"午間", t:"日式懷石料理午間套餐"},
+      {time:"下午", t:"心齋橋商圈"},
+      {time:"下午", t:"難波八阪神社"},
+      {time:"晚間", t:"松葉蟹大餐 🦀"},
+      {time:"晚間", t:"慶生 🎂"},
+      {time:"19:15", t:"OSAKA PIKAPIKA NIGHT"},
+    ],
+    places:[
+      {emoji:"🐋", name:"大阪海遊館", q:"海遊館 大阪",
+        photo:"照片資源/02_景點/D4_生日/D4_海遊館.jpg",
+        intro:"大型水族館，螺旋式動線環繞太平洋水槽，從不同樓層俯看鯨鯊。",
+        info:[["💴","成人 ¥2,700｜3歲以下免費"],["⏱️","約 2 小時"]],
+        notes:["⚠️ 暑假旺季建議預購 eTicket"]},
+      {emoji:"🛍️", name:"心齋橋商圈", q:"心斎橋筋商店街 大阪",
+        photo:"照片資源/02_景點/D4_生日/D4_心齋橋.png",
+        intro:"大阪著名購物街，心齋橋筋商店街涵蓋藥妝、服飾、土產，步行範圍內可接連逛到道頓堀，行程特地拉長停留時間。",
+        info:[["💴","免費"],["⏱️","1–2 小時"]]},
+      {emoji:"⛩️", name:"難波八阪神社", q:"難波八阪神社",
+        photo:"照片資源/02_景點/D4_生日/D4_難波八阪神社.jpg",
+        intro:"心齋橋／道頓堀步行範圍內，以巨大獅子頭造型的拝殿著名，是熱門拍照景點。",
+        info:[["💴","免費參拜"],["⏱️","20–30 分鐘"]]},
+      {emoji:"🏮", name:"OSAKA PIKAPIKA NIGHT", q:"OMO7 大阪 by 星野集團",
+        photo:"照片資源/02_景點/D4_購物/D4_OMO7夜景.png",
+        intro:"飯店內橫丁夜市，大阪美食＋現場娛樂表演。主秀「KOTEKOTE Show Time」20:30–20:45，附贈 3 張票（2 食物＋1 遊戲），加購 ¥400／張。",
+        info:[["💴","免費入場"],["🏨","飯店活動自由參加"],["⏱️","19:15–22:00（約 2.5–3 小時）"]],
+        notes:["2F OMO Base 集合｜不需預約"]},
+    ],
+  },
+  {
+    n:5, date:"Day 5", wd:"Demo", theme:"採買 ＆ 返程", hotel:"返程", emoji:"🧳",
+    warn:"OMO7 須 11:00 前退房",
+    acts:[
+      {em:"🛍️", t:"上午 臨空城 Rinku Premium Outlets 採買"},
+      {em:"✈️", t:"⚠️ 中午前 全員抵達 KIX（Demo）"},
+      {em:"✈️", t:"下午 深圳組返程（Demo）"},
+      {em:"✈️", t:"下午 台北組返程（Demo）"},
+    ],
+    timeline:[
+      {time:"上午", t:"臨空城 Rinku Premium Outlets 採買"},
+      {time:"中午前", t:"⚠️ 全員抵達 KIX（Demo）"},
+      {time:"下午", t:"深圳組返程（Demo）"},
+      {time:"下午", t:"台北組返程（Demo）"},
+    ],
+    places:[
+      {emoji:"🛍️", name:"Rinku Premium Outlets", q:"Rinku Premium Outlets",
+        photo:"照片資源/02_景點/D5_採買/D5_Rinku_設施.jpg",
+        intro:"關西機場旁 200+ 品牌折扣商城，掃貨後 5 分鐘即達機場，最後採買絕佳地點。",
+        info:[["💴","免費入場"],["⏱️","11:15 開始逛，12:30 前全員抵 KIX"]],
+        notes:["營業 10:00–20:00｜⚠️ 12:30 前須抵達 KIX"]},
+    ],
+  },
+];
+
+const FLIGHTS = [
+  {grp:"台北組（Demo）", airline:"示範航空", emoji:"🇹🇼",
+   go:{no:"DEMO-TPE-01", date:"Day 1", route:"台北 Demo 10:00 → 大阪 Demo 13:00"},
+   back:{no:"DEMO-TPE-02", date:"Day 5", route:"大阪 Demo 15:00 → 台北 Demo 18:00"},
+   bag:"行李資訊（Demo）",
+   pax:["旅客 A（Demo）","旅客 B（Demo）","旅客 C（Demo）","旅客 D（Demo）","旅客 E（Demo）","旅客 F（Demo）","旅客 G（Demo）","旅客 H（Demo）","旅客 I（Demo）"]},
+  {grp:"深圳組（Demo）", airline:"示範航空", emoji:"🇨🇳",
+   go:{no:"DEMO-SZX-01", date:"Day 1", route:"深圳 Demo 09:00 → 大阪 Demo 13:00"},
+   back:{no:"DEMO-SZX-02", date:"Day 5", route:"大阪 Demo 15:00 → 深圳 Demo 18:00"},
+   bag:"行李資訊（Demo）",
+   pax:["旅客 J（Demo）","旅客 K（Demo）","旅客 L（Demo）","旅客 M（Demo）"]},
+];
+
+const ROOMS = {
+  park:[
+    {type:"連通房（Demo）", slots:2, guests:"旅客 A、旅客 F、旅客 G、旅客 H（Demo）"},
+    {type:"豪華客房（Demo）", slots:1, guests:"旅客 B、旅客 C（Demo）"},
+    {type:"豪華客房（Demo）", slots:1, guests:"旅客 D、旅客 E（Demo）"},
+    {type:"豪華客房（單）（Demo）", slots:1, guests:"旅客 I（Demo）"},
+    {type:"連通房（Demo）", slots:2, guests:"旅客 J、旅客 K、旅客 L、旅客 M（Demo）"},
   ],
-  days: [
-    {
-      id: 1, label: "Day 1", theme: "抵達大阪・城市入口", hotel: "The Park Front Hotel @ USJ",
-      timeline: [["上午", "抵達關西機場（Demo）"], ["下午", "前往飯店與 Universal CityWalk"], ["晚上", "USJ 夜間行程作為備案（Demo）"]],
-      places: [
-        ["Universal CityWalk 大阪", "飯店步行即達的娛樂商業街，適合作為抵達日的低負擔散步路線。", "day1-citywalk.jpg", "Universal CityWalk Osaka"],
-        ["日本環球影城", "把熱門主題園區當作彈性備案，依票券、體力與當日人流調整。", "day1-usj.jpeg", "Universal Studios Japan"]
-      ]
-    },
-    {
-      id: 2, label: "Day 2", theme: "城市散步・在地風景", hotel: "The Park Front Hotel @ USJ",
-      timeline: [["上午", "泡麵文化與手作體驗"], ["下午", "勝尾寺與大阪街區"], ["晚上", "新世界散步與晚餐"]],
-      places: [
-        ["Cup Noodles Museum Osaka Ikeda", "適合把體驗活動放在上午，讓行程有一個明確的主題起點。", "day2-cup-noodles.jpg", "Cup Noodles Museum Osaka Ikeda"],
-        ["勝尾寺", "以達摩文化與山景為主題的景點，保留交通緩衝會更舒服。", "day2-katsuoji.png", "Katsuoji Temple Osaka"],
-        ["通天閣與新世界", "把街區當成傍晚的開放式行程，方便依當天狀況調整停留時間。", "day2-shinsekai.png", "Tsutenkaku Tower Shinsekai Osaka"]
-      ]
-    },
-    {
-      id: 3, label: "Day 3", theme: "奈良日・古都與公園", hotel: "OMO7 大阪 by 星野集團",
-      timeline: [["上午", "奈良公園與東大寺"], ["下午", "冰室神社、咖啡與街區散步"], ["晚上", "回到大阪，安排飯店活動"]],
-      places: [
-        ["奈良公園", "以公園、神社與步行節奏串起奈良日，景點之間保留休息空間。", "day3-nara-park.jpg", "Nara Park"],
-        ["東大寺", "適合作為奈良日的核心景點，將參觀時間和移動時間分開呈現。", "day3-todaiji.jpg", "Todai-ji Temple Nara"],
-        ["阿倍野 HARUKAS", "回大阪後的城市景觀選項，適合放在傍晚或作為天候備案。", "day3-harukas.jpg", "Abeno Harukas"]
-      ]
-    },
-    {
-      id: 4, label: "Day 4", theme: "海港與城市生活", hotel: "OMO7 大阪 by 星野集團",
-      timeline: [["上午", "海遊館與天保山"], ["下午", "難波八阪神社與心齋橋"], ["晚上", "大阪街區美食與自由活動"]],
-      places: [
-        ["海遊館", "室內景點可以作為雨天備案，也適合把停留時間設計得更有彈性。", "day4-kaiyukan.jpg", "Osaka Aquarium Kaiyukan"],
-        ["難波八阪神社", "城市裡的短停留景點，適合和難波、心齋橋路線串接。", "day4-yasaka.jpg", "Namba Yasaka Shrine"],
-        ["大阪心齋橋", "把購物與餐飲做成可自由調整的區段，不需要排滿每一分鐘。", "day4-shinsaibashi.png", "Shinsaibashi Osaka"]
-      ]
-    },
-    {
-      id: 5, label: "Day 5", theme: "最後採買・機場方向", hotel: "旅程結束",
-      timeline: [["上午", "Rinku Premium Outlets 採買"], ["中午", "前往關西機場"], ["下午", "返程交通（Demo）"]],
-      places: [["Rinku Premium Outlets", "靠近關西機場的最後採買選項，適合安排成返程日前的收尾行程。", "day5-rinku.jpg", "Rinku Premium Outlets"]]
-    }
+  omo:[
+    {type:"IDOBATA Suite（Demo）", slots:1, guests:"旅客 A、旅客 F、旅客 G、旅客 H（Demo）"},
+    {type:"OMO House（Demo）", slots:1, guests:"旅客 J、旅客 K、旅客 L、旅客 M（Demo）"},
+    {type:"Deluxe Room（Demo）", slots:1, guests:"旅客 B、旅客 C（Demo）"},
+    {type:"Deluxe Room（Demo）", slots:1, guests:"旅客 D、旅客 E（Demo）"},
+    {type:"Deluxe Room（Demo）", slots:1, guests:"旅客 I（Demo）"},
   ],
-  flights: [
-    { group: "台北組（Demo）", route: "台北 → 大阪", detail: "去程／回程班機資訊以示範資料呈現", passengers: ["旅客 A（Demo）", "旅客 B（Demo）", "旅客 C（Demo）"] },
-    { group: "深圳組（Demo）", route: "深圳 → 大阪", detail: "去程／回程班機資訊以示範資料呈現", passengers: ["旅客 D（Demo）", "旅客 E（Demo）"] }
-  ],
-  hotels: [
-    {
-      name: "The Park Front Hotel @ USJ", stay: "Day 1–Day 3 · 2 晚（Demo）", image: "park-front-night.jpg", map: "The Park Front Hotel at Universal Studios Japan",
-      checkin: "入住 17:00／退房 12:00（Demo）", breakfast: "早餐時段依官方資訊為準", booking: "***（Demo）", rooms: ["房間 A：旅客 A、旅客 B（Demo）", "房間 B：旅客 C、旅客 D（Demo）"]
-    },
-    {
-      name: "OMO7 大阪 by 星野集團", stay: "Day 3–Day 5 · 2 晚（Demo）", image: "omo7-exterior.png", map: "OMO7 Osaka by Hoshino Resorts",
-      checkin: "入住 15:00／退房 11:00（Demo）", breakfast: "早餐時段依官方資訊為準", booking: "***（Demo）", rooms: ["房間 C：旅客 E、旅客 F（Demo）", "房間 D：旅客 G（Demo）"]
-    }
-  ],
-  charter: { company: "示範包車公司（Demo）", companyPhone: "***（Demo）", driver: "示範司機（Demo）", guide: "示範導遊（Demo）", contact: "***（Demo）" },
-  emergency: [["警察", "110", "日本全國通用"], ["火災／救護", "119", "日本全國通用"], ["官方旅遊與醫療資訊", "JNTO", "請以官方最新資料為準"]],
-  phrases: [
-    ["不好意思／借過", "すみません", "Sumimasen"], ["謝謝", "ありがとうございます", "Arigatō gozaimasu"],
-    ["請問廁所在哪裡？", "トイレはどこですか？", "Toire wa doko desu ka?"], ["可以刷卡嗎？", "カードで払えますか？", "Kādo de haraemasu ka?"],
-    ["請幫我拍照，可以嗎？", "写真を撮っていただけますか？", "Shashin o totte itadakemasu ka?"], ["請幫助我！", "助けてください！", "Tasukete kudasai!"]
-  ],
-  rates: { twd: 0.2, cny: 0.042 }
 };
+
+const HOTELS = [
+  {id:"park", emoji:"🏨", name:"The Park Front Hotel @ USJ", stay:"Day 1–Day 3 · 2 晚（Demo）",
+   q:"The Park Front Hotel at Universal Studios Japan",
+   photo:"照片資源/01_飯店/01_Park Front Hotel/ParkFront_夜景.jpg",
+   inOut:"入住時間／退房時間請以官方資訊為準", bf:"早餐時段請以官方資訊為準", booking:"***（Demo）", extras:null},
+  {id:"omo", emoji:"🏨", name:"OMO7 大阪 by 星野集團", stay:"Day 3–Day 5 · 2 晚（Demo）",
+   q:"OMO7 Osaka by Hoshino Resorts",
+   photo:"照片資源/01_飯店/02_OMO7/OMO7_外觀.png",
+   inOut:"入住時間／退房時間請以官方資訊為準", bf:"早餐時段請以官方資訊為準", booking:"***（Demo）",
+   extras:{
+     bath:"大浴場「湯屋」：06:00–10:00 ／ 15:00–24:00，¥1,000／人（6歲以下免費）",
+     night:"OSAKA PIKAPIKA NIGHT：飯店 2F OMO Base 集合，免費入場；活動時間與內容請以官方資訊為準（Demo）",
+     activities:[
+       {em:"🏮", t:"OSAKA PIKAPIKA NIGHT｜飯店內橫丁夜市，大阪美食＋現場娛樂｜免費｜不需預約"},
+       {em:"🌿", t:"Miya-green 庭園廣場｜7,600m² 綠地草坪，可自由休憩｜免費｜不需預約"},
+       {em:"🎌", t:"新世界深度導覽｜OMO Ranger 帶隊探索通天閣、ジャンジャン横丁｜免費｜需預約"},
+       {em:"🍢", t:"串炸體驗之旅｜學習串炸文化與正確吃法｜另計｜需預約"},
+       {em:"🍜", t:"出汁文化導覽｜逛市場了解關西高湯文化｜免費｜需預約"},
+       {em:"🗺️", t:"美食地圖諮詢｜OMO Ranger 推薦私藏在地美食｜免費｜不需預約"},
+     ],
+   }},
+];
+
+const CHARTER = {
+  company:"示範包車公司（Demo）", companyTel:"***（Demo）",
+  guideName:"示範導遊（Demo）", guideTel:"***（Demo）",
+  meet:"KIX T1，集合時間（Demo）",
+};
+
+const EMERGENCY = [
+  {t:"火災／救護", n:"119"},
+  {t:"警察", n:"110"},
+  {t:"日本官方旅遊協助", n:"請以 JNTO 官方最新資訊為準"},
+  {t:"公開版提醒", n:"私人聯絡方式已移除（Demo）"},
+];
+const MEDICAL = [
+  {t:"醫療資訊", n:"請使用 JNTO／當地官方最新資訊"},
+  {t:"公開版提醒", n:"私人醫療聯絡資料已移除（Demo）"},
+];
+
+const PHRASES = [
+  {em:"👋", cat:"基本禮貌", items:[
+    {zh:"不好意思／借過", jp:"すみません", kana:"すみません", ro:"Sumimasen"},
+    {zh:"謝謝（正式）", jp:"ありがとうございます", kana:"ありがとうございます", ro:"Arigatō gozaimasu"},
+    {zh:"謝謝（輕鬆）", jp:"ありがとう", kana:"ありがとう", ro:"Arigatō"},
+    {zh:"謝謝（大阪腔）", jp:"おおきに", kana:"おおきに", ro:"Ōkini"},
+    {zh:"好的／沒關係", jp:"大丈夫です", kana:"だいじょうぶです", ro:"Daijōbu desu"},
+    {zh:"對不起", jp:"ごめんなさい", kana:"ごめんなさい", ro:"Gomen nasai"},
+    {zh:"可以幫我們拍照嗎？", jp:"写真を撮っていただけますか？", kana:"しゃしんを とっていただけますか", ro:"Shashin o totte itadakemasu ka?"},
+  ]},
+  {em:"🗺️", cat:"問路", items:[
+    {zh:"請問___在哪裡？", jp:"___はどこですか？", kana:"___はどこですか", ro:"___ wa doko desu ka?"},
+    {zh:"請問廁所在哪裡？", jp:"トイレはどこですか？", kana:"トイレはどこですか", ro:"Toire wa doko desu ka?"},
+  ]},
+  {em:"🛍️", cat:"購物", items:[
+    {zh:"這個多少錢？", jp:"これはいくらですか？", kana:"これはいくらですか", ro:"Kore wa ikura desu ka?"},
+    {zh:"多少錢？（大阪腔）", jp:"なんぼ？", kana:"なんぼ", ro:"Nanbo?"},
+    {zh:"可以試穿嗎？", jp:"試着してもいいですか？", kana:"しちゃくしてもいいですか", ro:"Shichaku shite mo ii desu ka?"},
+    {zh:"我要買這個。", jp:"これをください。", kana:"これをください", ro:"Kore o kudasai"},
+    {zh:"可以刷卡嗎？", jp:"カードで払えますか？", kana:"カードではらえますか", ro:"Kādo de haraemasu ka?"},
+    {zh:"【店員問】需要袋子嗎？", jp:"レジ袋はご利用ですか？", kana:"レジぶくろはごりようですか", ro:"Reji-bukuro wa go-riyō desu ka?"},
+    {zh:"要袋子。", jp:"お願いします。", kana:"おねがいします", ro:"Onegaishimasu"},
+    {zh:"不用袋子。", jp:"大丈夫です。", kana:"だいじょうぶです", ro:"Daijōbu desu"},
+  ]},
+  {em:"🍜", cat:"餐廳", items:[
+    {zh:"幾位？（店員問）", jp:"何名様ですか？", kana:"なんめいさまですか", ro:"Nan-mei-sama desu ka?"},
+    {zh:"___位。", jp:"___名です。", kana:"___めいです", ro:"___ mei desu"},
+    {zh:"這個請給我。", jp:"これをください。", kana:"これをください", ro:"Kore o kudasai"},
+    {zh:"好吃！", jp:"おいしい！", kana:"おいしい", ro:"Oishii!"},
+    {zh:"超好吃！（大阪腔）", jp:"めっちゃうまい！", kana:"めっちゃうまい", ro:"Meccha umai!"},
+    {zh:"買單。", jp:"お会計をお願いします。", kana:"おかいけいをおねがいします", ro:"O-kaikei o onegaishimasu"},
+    {zh:"這幾位不吃豬肉。", jp:"こちらは豚肉が食べられません。", kana:"こちらはぶたにくがたべられません", ro:"Kochira wa butaniku ga taberaremasen"},
+  ]},
+  {em:"🆘", cat:"緊急", items:[
+    {zh:"我迷路了。", jp:"迷子になりました。", kana:"まいごになりました", ro:"Maigo ni narimashita"},
+    {zh:"請幫我聯絡他。", jp:"この番号に連絡してください。", kana:"このばんごうにれんらくしてください", ro:"Kono bangō ni renraku shite kudasai"},
+    {zh:"救命！", jp:"助けてください！", kana:"たすけてください", ro:"Tasukete kudasai!"},
+    {zh:"請叫救護車。", jp:"救急車を呼んでください。", kana:"きゅうきゅうしゃをよんでください", ro:"Kyūkyūsha o yonde kudasai"},
+    {zh:"請叫警察。", jp:"警察を呼んでください。", kana:"けいさつをよんでください", ro:"Keisatsu o yonde kudasai"},
+    {zh:"我不舒服。", jp:"気分が悪いです。", kana:"きぶんがわるいです", ro:"Kibun ga warui desu"},
+  ]},
+];

@@ -1,39 +1,37 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#173c60">
-  <meta name="description" content="大阪旅遊手冊 Demo：手機優先的五日旅遊規劃介面。">
-  <title>大阪旅遊手冊 Demo</title>
-  <link rel="icon" type="image/png" href="assets/app-icon-osaka-v3.png">
-  <link rel="stylesheet" href="styles.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>大阪旅遊手冊 Demo</title>
+<meta name="theme-color" content="#173C60">
+<link rel="icon" type="image/png" href="assets/app-icon-osaka-v3.png?v=20260717c">
+<link rel="apple-touch-icon" href="assets/app-icon-osaka-v3.png?v=20260717c">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=M+PLUS+Rounded+1c:wght@700;800;900&family=Noto+Serif+TC:wght@700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div class="app-shell">
-    <header class="site-header">
-      <div class="brand-mark">OSAKA / DEMO</div>
-      <div class="header-meta">TRAVEL PLANNING INTERFACE</div>
-    </header>
+<div id="app">
+  <section id="screen-home" class="screen active"></section>
+  <section id="screen-trip" class="screen"></section>
+  <section id="screen-info" class="screen"></section>
+  <section id="screen-rate" class="screen"></section>
+  <section id="screen-jp" class="screen"></section>
+</div>
 
-    <main id="app" tabindex="-1"></main>
+<nav class="nav" id="nav">
+  <button data-tab="home" class="active" aria-label="公告"><span class="nicon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 1 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg></span></button>
+  <button data-tab="trip" aria-label="行程"><span class="nicon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4 3 6.2v13.8l6-2.2 6 2.2 6-2.2V4l-6 2.2L9 4Z"/><path d="M9 4v13.8M15 6.2V20"/></svg></span></button>
+  <button data-tab="info" aria-label="資訊"><span class="nicon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v5"/><path d="M12 7.6h.01"/></svg></span></button>
+  <button data-tab="rate" aria-label="匯率"><span class="nicon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 5l5 6 5-6"/><path d="M12 11v8"/><path d="M8.5 13.5h7M8.5 16.5h7"/></svg></span></button>
+  <button data-tab="jp" aria-label="日文"><span class="nicon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 4H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h3v4l5-4h8a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1Z"/></svg></span></button>
+</nav>
 
-    <nav class="bottom-nav" aria-label="主要導覽">
-      <button class="nav-item active" data-tab="home" aria-label="首頁"><span class="nav-icon">⌂</span><span>首頁</span></button>
-      <button class="nav-item" data-tab="trip" aria-label="每日行程"><span class="nav-icon">◫</span><span>行程</span></button>
-      <button class="nav-item" data-tab="info" aria-label="實用資訊"><span class="nav-icon">ⓘ</span><span>資訊</span></button>
-      <button class="nav-item" data-tab="rate" aria-label="匯率計算"><span class="nav-icon">↔</span><span>匯率</span></button>
-      <button class="nav-item" data-tab="jp" aria-label="常用日文"><span class="nav-icon">文</span><span>日文</span></button>
-    </nav>
+<div class="toast" id="toast"></div>
 
-    <footer class="site-footer">
-      <p>私人使用版本部署於 Netlify 並保留個人化功能；本頁為去識別化公開 Demo，預計部署於 GitHub Pages。</p>
-      <p>Built as a travel planning interface demo · GitHub / wakeuplate</p>
-    </footer>
-  </div>
-
-  <div class="toast" id="toast" role="status" aria-live="polite"></div>
-  <script src="demo-data.js"></script>
-  <script src="app.js"></script>
+<script src="demo-data.js"></script>
+<script src="app.js"></script>
 </body>
 </html>
