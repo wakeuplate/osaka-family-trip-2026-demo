@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#173c60">
+  <meta name="description" content="大阪旅遊手冊 Demo：手機優先的五日旅遊規劃介面。">
+  <title>大阪旅遊手冊 Demo</title>
+  <link rel="icon" type="image/png" href="assets/app-icon-osaka-v3.png">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="site-header">
+      <div class="brand-mark">OSAKA / DEMO</div>
+      <div class="header-meta">TRAVEL PLANNING INTERFACE</div>
+    </header>
+
+    <main id="app" tabindex="-1"></main>
+
+    <nav class="bottom-nav" aria-label="主要導覽">
+      <button class="nav-item active" data-tab="home" aria-label="首頁"><span class="nav-icon">⌂</span><span>首頁</span></button>
+      <button class="nav-item" data-tab="trip" aria-label="每日行程"><span class="nav-icon">◫</span><span>行程</span></button>
+      <button class="nav-item" data-tab="info" aria-label="實用資訊"><span class="nav-icon">ⓘ</span><span>資訊</span></button>
+      <button class="nav-item" data-tab="rate" aria-label="匯率計算"><span class="nav-icon">↔</span><span>匯率</span></button>
+      <button class="nav-item" data-tab="jp" aria-label="常用日文"><span class="nav-icon">文</span><span>日文</span></button>
+    </nav>
+
+    <footer class="site-footer">
+      <p>私人使用版本部署於 Netlify 並保留個人化功能；本頁為去識別化公開 Demo，預計部署於 GitHub Pages。</p>
+      <p>Built as a travel planning interface demo · GitHub / wakeuplate</p>
+    </footer>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="demo-data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
