@@ -93,13 +93,13 @@ LICENSE             MIT license for source code only
 - 所有 Demo 圖片已掃描並移除 EXIF／comment metadata。
 - 可編輯欄位只寫入目前瀏覽器的 `localStorage`，不會送到伺服器。
 
-## Local preview
+## Demo and local preview
 
-因為網站使用分離的 JavaScript 檔案，請透過任一個靜態伺服器預覽，不要直接雙擊 `index.html`。啟動後開啟本機網址即可。
+正式 Demo：<https://wakeuplate.github.io/osaka-family-trip-2026-demo/>
 
-目前預覽網址：`http://127.0.0.1:8765/`
+因為網站使用分離的 JavaScript 檔案，本機預覽時請透過任一個靜態伺服器開啟，不要直接雙擊 `index.html`。
 
-公開 GitHub Pages 前，需將本節的本機預覽網址改成正式 GitHub Pages 網址，並重新掃描 repo 內是否仍有私人 Netlify、影片或本機連結。
+公開前檢查已完成：repo 內不保留私人 Netlify、私人影片或固定本機連結。
 
 ## Known boundaries
 
