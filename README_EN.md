@@ -8,7 +8,8 @@ The original site was a private travel utility used through a Netlify／PWA envi
 
 **Live Demo:** [Open the GitHub Pages site](https://wakeuplate.github.io/osaka-family-trip-2026-demo/)<br>
 **GitHub Repository:** [wakeuplate/osaka-family-trip-2026-demo](https://github.com/wakeuplate/osaka-family-trip-2026-demo)<br>
-**繁體中文版:** [README.md](README.md)
+**繁體中文版:** [README.md](README.md)<br>
+**Design system:** [DESIGN.md](DESIGN.md)
 
 ## Preview
 
@@ -66,6 +67,8 @@ This website brings pre-trip planning and in-trip lookup into one shared family 
 - Prepared the project as a static GitHub Pages site with no backend dependency.
 
 ## Product decisions
+
+The complete visual and UI／UX rules live in [DESIGN.md](DESIGN.md); this README keeps the portfolio-level product context and decisions.
 
 ### Mobile-first by intent
 
@@ -152,6 +155,7 @@ assets/             icons and decorative artwork
 照片資源/            destination and hotel display assets
 docs/screenshots/   portfolio preview images
 行前影片/            de-identified interactive pre-trip guide
+DESIGN.md           overall UI／UX design system and maintenance rules
 CREDITS.md          asset credits and redistribution notes
 README.md           Traditional Chinese documentation
 LICENSE             MIT license for source code only

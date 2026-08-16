@@ -8,7 +8,8 @@
 
 **正式 Demo：** [開啟 GitHub Pages](https://wakeuplate.github.io/osaka-family-trip-2026-demo/)<br>
 **GitHub Repository：** [wakeuplate/osaka-family-trip-2026-demo](https://github.com/wakeuplate/osaka-family-trip-2026-demo)<br>
-**English version：** [README_EN.md](README_EN.md)
+**English version：** [README_EN.md](README_EN.md)<br>
+**設計文件：** [DESIGN.md](DESIGN.md)
 
 ## 預覽
 
@@ -66,6 +67,8 @@
 - 建立可直接部署到 GitHub Pages 的純靜態網站。
 
 ## 產品決策
+
+整體視覺與 UI／UX 規範整理在 [DESIGN.md](DESIGN.md)，本 README 保留作品集層級的設計決策與產品脈絡。
 
 ### Mobile-first by intent
 
@@ -152,6 +155,7 @@ assets/             icons and decorative artwork
 照片資源/            destination and hotel display assets
 docs/screenshots/   portfolio preview images
 行前影片/            de-identified interactive pre-trip guide
+DESIGN.md           overall UI／UX design system and maintenance rules
 CREDITS.md          asset credits and redistribution notes
 README_EN.md        English documentation
 LICENSE             MIT license for source code only
